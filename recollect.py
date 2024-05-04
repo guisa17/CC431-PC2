@@ -13,7 +13,29 @@ app = Flask(__name__)
 
 main_html = """
 <html>
-<head></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <title>Recoleccion</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+      #resultado {
+        font-weight:  bold;
+        font-size:  6rem;
+        text-align: center;
+      }
+
+      .canvas-container {
+          margin: 0 auto;
+          border: 1px solid #ccc;
+      }
+    </style>
+
+</head>
 <script>
   var mousePressed = false;
   var lastX, lastY;
@@ -28,7 +50,7 @@ main_html = """
       var randnumber = getRndInteger(0, 3);
       var objetos = ["fish", "car", "tree"];
       var aleatorio = objetos[randnumber];
-      document.getElementById('mensaje').innerHTML  = 'Dibuja un ' + aleatorio;
+      document.getElementById('mensaje').innerHTML  = 'Dibuje un ' + aleatorio;
       document.getElementById('objeto').value = aleatorio;
 
       $('#myCanvas').mousedown(function (e) {
@@ -78,28 +100,56 @@ main_html = """
   }
 
 </script>
+
 <body onload="InitThis();">
+	<header>
+	<div class="px-4 py-2 my-2 text-center border-bottom">
+		<img class="d-block mx-auto mb-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Uni-logo_transparente_granate.png/477px-Uni-logo_transparente_granate.png" alt="logo-uni" width="120" height="160">
+		<h1 class="display-5 fw-bold">Recoleccion de Imagenes</h1>
+		<div class="col-lg-6 mx-auto">
+		</div>
+      </div>
+      </header>
+      <main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" ></script>
-    <div align="left">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Uni-logo_transparente_granate.png" width="150"/>
-    </div>
-    <div align="center">
-        <h1 id="mensaje">Dibujando...</h1>
-        <canvas id="myCanvas" width="200" height="200" style="border:2px solid black"></canvas>
-        <br/>
-        <br/>
-        <button onclick="javascript:clearArea();return false;">Borrar</button>
-    </div>
-    <div align="center">
-      <form method="post" action="upload" onsubmit="javascript:prepareImg();"  enctype="multipart/form-data">
-      <input id="objeto" name="objeto" type="hidden" value="">
-      <input id="myImage" name="myImage" type="hidden" value="">
-      <input id="bt_upload" type="submit" value="Enviar">
-      </form>
-    </div>
+
+    <div class="text-center">
+    <h1 id="mensaje">Dibujando...</h1>
+    <canvas id="myCanvas" width="200" height="200" style="border:2px solid black"></canvas>
+    <br/><br/>
+    <button class="btn btn-primary mx-2" onclick="javascript:clearArea();return false;">Borrar</button>
+    <form class="d-inline" method="post" action="upload" onsubmit="javascript:prepareImg();" enctype="multipart/form-data">
+        <input id="objeto" name="objeto" type="hidden" value="">
+        <input id="myImage" name="myImage" type="hidden" value="">
+        <input class="btn btn-success mx-2" id="bt_upload" type="submit" value="Enviar">
+    </form>
+</div>
+
+	</main>
+
+    
+    <footer>
+    <div class="b-example-divider"></div>
+
+      <div class="bg-dark text-secondary mt-5 px-4 py-2 text-center">
+        <div class="py-5">
+          <h1 class="display-5 fw-bold text-white">Computacion Grafica</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="display-6 mb-4">CC431 Seccion A - 03/05/2024</p>
+            <ul class="list-unstyled text-white">
+                <li>by Espinoza Pari Franklin</li>
+                <li>by Guillermo Ronie Salcedo Alvarez</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider mb-0"></div>
+     </footer>
 </body>
 </html>
+
 
 """
 
